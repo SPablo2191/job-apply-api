@@ -1,10 +1,9 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from dotenv import load_dotenv
-import os
-load_dotenv()
-CONNECTION_STRING = os.environ['MONGODB_URI']
+
+from .config import CONNECTION_STRING
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

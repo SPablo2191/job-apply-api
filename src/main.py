@@ -1,16 +1,16 @@
 from fastapi import FastAPI
-from dotenv import load_dotenv
 from .database import lifespan
-import os
-
+from .config import VERSION
 from .auth.router import router as auth_router
 
-load_dotenv()
+
 app = FastAPI(lifespan=lifespan)
 app.title = "Job Application API"
-app.version = os.getenv('VERSION','0.0.0')
-
+app.version = VERSION
 
 # routes
-app.include_router(auth_router)
+app.include_router(
+    router=auth_router,
+    prefix= f"/api/{VERSION}"
+    )
 
