@@ -1,0 +1,2 @@
+class JobApplicationException(Exception):
+    pass
